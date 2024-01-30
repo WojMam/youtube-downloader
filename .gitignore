@@ -131,3 +131,7 @@ dmypy.json
 # Intellij
 .DS_Store
 .idea
+
+# Output results
+.mp4
+.mp3
