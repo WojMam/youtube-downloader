@@ -28,7 +28,7 @@ Please make sure to check pylint results in the Actions tab after commiting.
 
 Last commit Pylink status:
 
-![example workflow](https://github.com/WojMam/qr_generator/actions/workflows/pylint.yml/badge.svg)
+[![Pylint](https://github.com/WojMam/youtube-downloader/actions/workflows/pylint.yml/badge.svg)](https://github.com/WojMam/youtube-downloader/actions/workflows/pylint.yml)
 
 ## Plan for the future:
 
