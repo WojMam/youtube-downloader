@@ -31,7 +31,54 @@ class App:
 
         self.window.geometry("400x400")
 
+        self.initialize_widgets()
+
         self.window.mainloop()
+
+    def initialize_widgets(self):
+        """
+        This method is responsible for the initialization of the widgets of the app.
+        """
+
+        self.label = tk.CTkLabel(
+            self.window, text="Enter the link of the video you want to download"
+        )
+        self.label.pack()
+
+        self.entry = tk.CTkEntry(self.window)
+        self.entry.pack()
+
+        self.button = tk.CTkButton(
+            self.window,
+            text="Download Video",
+            command=self.download_video_button_action,
+        )
+        self.button.pack()
+
+        self.button = tk.CTkButton(
+            self.window,
+            text="Download Audio",
+            command=self.download_audio_button_action,
+        )
+        self.button.pack()
+
+    def download_video_button_action(self):
+        """
+        This method is responsible for the action of the download video button.
+        """
+
+        link = self.entry.get()
+
+        Utils.download_video(self, link)
+
+    def download_audio_button_action(self):
+        """
+        This method is responsible for the action of the download audio button.
+        """
+
+        link = self.entry.get()
+
+        Utils.download_audio(self, link)
 
 
 class Utils:
