@@ -4,9 +4,10 @@ import os
 from sys import argv
 
 from pytube import YouTube
+import customtkinter as tk
 
 
-class Main:
+class App:
     """
     This is the main class of the app. It is responsible for the user interaction
     and the control of the app.
@@ -18,11 +19,19 @@ class Main:
         and the control of the app.
         """
 
-        self.link = argv[1]
-        self.utils = Utils()
+        self.iniatiliza_window()
 
-        self.utils.download_video(self.link)
-        self.utils.download_audio(self.link)
+    def iniatiliza_window(self):
+        """
+        This method is responsible for the initialization of the main window of the app.
+        """
+
+        self.window = tk.CTk()
+        self.window.title("Youtube Downloader")
+
+        self.window.geometry("400x400")
+
+        self.window.mainloop()
 
 
 class Utils:
@@ -73,4 +82,4 @@ class Utils:
 
 
 if __name__ == "__main__":
-    Main()
+    App()
