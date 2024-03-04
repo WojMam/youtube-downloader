@@ -35,6 +35,7 @@ Last commit Pylink status:
 - [ ] Create PoC
 - [ ] Create the plans foe the future
 - [ ] Create new GUI template using custom tkinter
+- [ ] Create special cases for videos that needs the user to be logged in
 
 ## License
 
