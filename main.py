@@ -1,7 +1,6 @@
 """This is a main python app module"""
 
 import os
-from sys import argv
 
 from pytube import YouTube
 import customtkinter as tk
@@ -18,7 +17,11 @@ class App:
         This is the main class of the app. It is responsible for the user interaction
         and the control of the app.
         """
-
+        self.label = None
+        self.entry = None
+        self.button = None
+        self.button_download_audio = None
+        self.button_download_video = None
         self.iniatiliza_window()
 
     def iniatiliza_window(self):
@@ -48,19 +51,19 @@ class App:
         self.entry = tk.CTkEntry(self.window)
         self.entry.pack()
 
-        self.button = tk.CTkButton(
+        self.button_download_video = tk.CTkButton(
             self.window,
             text="Download Video",
             command=self.download_video_button_action,
         )
-        self.button.pack()
+        self.button_download_video.pack()
 
-        self.button = tk.CTkButton(
+        self.button_download_audio = tk.CTkButton(
             self.window,
             text="Download Audio",
             command=self.download_audio_button_action,
         )
-        self.button.pack()
+        self.button_download_audio.pack()
 
     def download_video_button_action(self):
         """
