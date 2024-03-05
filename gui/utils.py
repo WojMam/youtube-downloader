@@ -3,6 +3,7 @@
 import os
 
 from pytube import YouTube
+import customtkinter as tk
 
 
 class Utils:
@@ -50,3 +51,18 @@ class Utils:
         audio_from_object = youtube_object.streams.get_audio_only()
 
         audio_from_object.download("./Download/Music")
+
+    def change_appearance_mode_event(self, new_appearance_mode: str):
+        """
+        This method is responsible for the event of changing the appearance mode of the app.
+        """
+
+        tk.set_appearance_mode(new_appearance_mode)
+
+    def change_scaling_event(self, new_scaling: str):
+        """
+        This method is responsible for the event of changing the scaling of the app.
+        """
+
+        new_scaling_float = int(new_scaling.replace("%", "")) / 100
+        tk.set_widget_scaling(new_scaling_float)
