@@ -19,6 +19,7 @@ class App:
         self.label = None
         self.entry = None
         self.button = None
+        self.tabview = None
         self.button_download_audio = None
         self.button_download_video = None
         self.sidebar_frame = None
@@ -114,8 +115,14 @@ class App:
             row=1, column=0, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
 
+        # create tabview
+        self.tabview = tk.CTkTabview(self.window, width=250)
+        self.tabview.grid(row=1, column=1, padx=(20, 20), pady=(20, 20), sticky="nsew")
+        self.tabview.add("Video").grid_columnconfigure(1, weight=1)
+        self.tabview.add("Audio").grid_columnconfigure(1, weight=1)
+
         self.button_download_video = tk.CTkButton(
-            self.main_frame,
+            self.tabview.tab("Video"),
             text="Download Video",
             command=self.download_video_button_action,
         )
@@ -124,7 +131,7 @@ class App:
         )
 
         self.button_download_audio = tk.CTkButton(
-            self.main_frame,
+            self.tabview.tab("Audio"),
             text="Download Audio",
             command=self.download_audio_button_action,
         )
