@@ -1,2 +1,4 @@
 pytube~=15.0.0
 customtkinter==5.2.2
+image==1.5.33
+Pillow==9.4.0

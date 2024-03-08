@@ -1,8 +1,13 @@
 """ This module is responsible for the main window class of the app. """
 
+from tkinter import Canvas
 import customtkinter as tk
 
 from gui.utils import Utils
+
+from PIL import Image, ImageTk
+import urllib.request
+from io import BytesIO
 
 
 class App:
@@ -114,6 +119,7 @@ class App:
         self.entry.grid(
             row=1, column=0, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
+        self.load_video_preview(self.main_frame)
 
         # create tabview
         self.tabview = tk.CTkTabview(self.window, width=250)
@@ -136,7 +142,7 @@ class App:
             command=self.download_audio_button_action,
         )
         self.button_download_audio.grid(
-            row=2, column=1, columnspan=1, padx=(20, 0), pady=(20, 20), sticky="nsew"
+            row=2, column=0, columnspan=1, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
 
     def download_video_button_action(self):
@@ -165,3 +171,16 @@ class App:
 
     def sidebar_button_event(self):
         print("sidebar_button click")
+
+    def load_video_preview(self, ui_element):
+        URL = "https://www.youtube.com/watch?v=sVPYIRF9RCQ"  # imageurl
+        u = urllib.request.urlopen(URL)
+        raw_data = u.read()
+        u.close()
+        canvas = Canvas(ui_element, width=300, height=300)
+
+        im = Image.open(BytesIO(raw_data))
+        im = im.resize((50, 50), Image.ANTIALIAS)
+        photo = ImageTk.PhotoImage(im)
+
+        canvas.create_image(20, 20, anchor="NW", image=photo)
