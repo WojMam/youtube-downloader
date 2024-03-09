@@ -4,7 +4,7 @@ from tkinter import Canvas
 import customtkinter as tk
 
 from gui.utils import Utils
-
+from pytube import YouTube
 from PIL import Image, ImageTk
 import urllib.request
 from io import BytesIO
@@ -119,7 +119,14 @@ class App:
         self.entry.grid(
             row=1, column=0, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
-        self.load_video_preview(self.main_frame)
+        self.button_load_video = tk.CTkButton(
+            self.main_frame,
+            text="Load Video",
+            command=self.load_video_button_action,
+        )
+        self.button_load_video.grid(
+            row=1, column=2, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
+        )
 
         # create tabview
         self.tabview = tk.CTkTabview(self.window, width=250)
@@ -163,6 +170,14 @@ class App:
 
         Utils.download_audio(self, link)
 
+    def load_video_button_action(self):
+        """
+        This method is responsible for the action of the download audio button.
+        """
+        ui_element = self.main_frame
+        link = self.entry.get()
+        self.load_video_preview(ui_element, link)
+
     def change_appearance_mode_event(self, new_appearance_mode: str):
         Utils.change_appearance_mode_event(self, new_appearance_mode)
 
@@ -172,15 +187,30 @@ class App:
     def sidebar_button_event(self):
         print("sidebar_button click")
 
-    def load_video_preview(self, ui_element):
-        URL = "https://www.youtube.com/watch?v=sVPYIRF9RCQ"  # imageurl
-        u = urllib.request.urlopen(URL)
-        raw_data = u.read()
-        u.close()
-        canvas = Canvas(ui_element, width=300, height=300)
+    def load_video_preview(self, ui_element, link):
+        # link = self.entry.get()  # imageurl
+        # video = YouTube(link)
+        thumbnail_url = YouTube(link).thumbnail_url.replace(
+            "hq720.jpg", "maxresdefault.jpg"
+        )
+        # thumbnail_url = video.thumbnail_url
+        print(thumbnail_url)
+        urllib.request.urlretrieve(thumbnail_url, "local-filename.jpg")
 
-        im = Image.open(BytesIO(raw_data))
-        im = im.resize((50, 50), Image.ANTIALIAS)
-        photo = ImageTk.PhotoImage(im)
-
-        canvas.create_image(20, 20, anchor="NW", image=photo)
+        video_preview = Image.open("local-filename.jpg")
+        resized_video_preview = video_preview.resize((400, 250))
+        video_preview_widget = tk.CTkImage(
+            dark_image=resized_video_preview,
+            light_image=resized_video_preview,
+            size=(400, 250),
+        )
+        video_preview_widget.configure()
+        self.video_preview_label = tk.CTkLabel(
+            ui_element,
+            text="",
+            image=video_preview_widget,
+            anchor="w",
+        )
+        self.video_preview_label.grid(
+            row=3, column=1, columnspan=2, padx=(20, 0), pady=(20, 20)
+        )
