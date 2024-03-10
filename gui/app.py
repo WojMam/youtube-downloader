@@ -103,24 +103,31 @@ class App:
         """
         This method is responsible for the initialization of the widgets of the app.
         """
+        # create scrollable frame
+        self.scrollable_frame = tk.CTkScrollableFrame(self.window)
+        self.scrollable_frame.grid(row=0, column=1, rowspan=4, sticky="nsew")
 
-        self.main_frame = tk.CTkFrame(self.window, width=140, corner_radius=0)
-        self.main_frame.grid(
+        # create link input frame
+        self.link_input_frame = tk.CTkFrame(
+            self.scrollable_frame, width=140, corner_radius=0
+        )
+        self.link_input_frame.grid(
             row=0, column=1, padx=(20, 20), pady=(20, 20), sticky="nsew"
         )
         self.label = tk.CTkLabel(
-            self.main_frame, text="Enter the link of the video you want to download"
+            self.link_input_frame,
+            text="Enter the link of the video you want to download",
         )
         self.label.grid(
             row=0, column=0, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
 
-        self.entry = tk.CTkEntry(self.main_frame)
+        self.entry = tk.CTkEntry(self.link_input_frame)
         self.entry.grid(
             row=1, column=0, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
         self.button_load_video = tk.CTkButton(
-            self.main_frame,
+            self.link_input_frame,
             text="Load Video",
             command=self.load_video_button_action,
         )
@@ -128,9 +135,21 @@ class App:
             row=1, column=2, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
 
+        # create preview frame
+        self.preview_frame = tk.CTkFrame(
+            self.scrollable_frame, width=140, corner_radius=0
+        )
+        self.preview_frame.grid(
+            row=2, column=1, padx=(20, 20), pady=(20, 20), sticky="nsew"
+        )
+        self.label = tk.CTkLabel(self.preview_frame, text="Information about the video")
+        self.label.grid(
+            row=0, column=0, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
+        )
+
         # create tabview
-        self.tabview = tk.CTkTabview(self.window, width=250)
-        self.tabview.grid(row=1, column=1, padx=(20, 20), pady=(20, 20), sticky="nsew")
+        self.tabview = tk.CTkTabview(self.scrollable_frame, width=250)
+        self.tabview.grid(row=3, column=1, padx=(20, 20), pady=(20, 20), sticky="nsew")
         self.tabview.add("Video").grid_columnconfigure(1, weight=1)
         self.tabview.add("Audio").grid_columnconfigure(1, weight=1)
 
@@ -174,7 +193,7 @@ class App:
         """
         This method is responsible for the action of the download audio button.
         """
-        ui_element = self.main_frame
+        ui_element = self.preview_frame
         link = self.entry.get()
         self.load_video_preview(ui_element, link)
 
