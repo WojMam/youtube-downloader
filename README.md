@@ -30,12 +30,16 @@ Last commit Pylink status:
 
 [![Pylint](https://github.com/WojMam/youtube-downloader/actions/workflows/pylint.yml/badge.svg)](https://github.com/WojMam/youtube-downloader/actions/workflows/pylint.yml)
 
-## Plan for the future:
+## Plans for the future:
 
-- [ ] Create PoC
-- [ ] Create the plans foe the future
-- [ ] Create new GUI template using custom tkinter
+- [x] Create PoC
+- [x] Create the plans foe the future
+- [x] Create new GUI template using custom tkinter
 - [ ] Create special cases for videos that needs the user to be logged in
+- [ ] Create preview image with the data about the clip
+- [ ] Create dummy image for the "before vide load" state
+- [ ] Disable the download button at start of the App
+- [ ] Create a dropdown with the different resolutions to download video
 
 ## License
 
