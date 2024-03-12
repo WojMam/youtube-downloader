@@ -40,6 +40,8 @@ Last commit Pylink status:
 - [ ] Create dummy image for the "before vide load" state
 - [ ] Disable the download button at start of the App
 - [ ] Create a dropdown with the different resolutions to download video
+- [ ] Add the icon in the main frame of the app window, above all elements
+- [ ] Add icons to the buttons
 
 ## License
 
