@@ -208,10 +208,10 @@ class App:
 
     def load_video_preview(self, ui_element, link):
         # link = self.entry.get()  # imageurl
-        # video = YouTube(link)
-        thumbnail_url = YouTube(link).thumbnail_url.replace(
-            "hq720.jpg", "maxresdefault.jpg"
-        )
+        video = YouTube(link)
+        thumbnail_url = video.thumbnail_url.replace("hq720.jpg", "maxresdefault.jpg")
+        title = video.title
+        author = video.author
         # thumbnail_url = video.thumbnail_url
         print(thumbnail_url)
         urllib.request.urlretrieve(thumbnail_url, "local-filename.jpg")
@@ -232,4 +232,19 @@ class App:
         )
         self.video_preview_label.grid(
             row=3, column=1, columnspan=2, padx=(20, 0), pady=(20, 20)
+        )
+
+        # create data frame
+        self.data_frame = tk.CTkFrame(self.preview_frame, width=140, corner_radius=0)
+        self.data_frame.grid(
+            row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew"
+        )
+
+        self.label = tk.CTkLabel(self.data_frame, text="Title: " + title)
+        self.label.grid(
+            row=1, column=1, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
+        )
+        self.label = tk.CTkLabel(self.data_frame, text="Author: " + author)
+        self.label.grid(
+            row=2, column=1, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
