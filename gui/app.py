@@ -46,7 +46,7 @@ class App:
         self.window = tk.CTk()
         self.window.title("Youtube Downloader")
 
-        self.window.geometry(f"{1100}x{580}")
+        self.window.geometry(f"{1200}x{580}")
         self.window.grid_columnconfigure(1, weight=1)
         self.window.grid_columnconfigure((2, 3), weight=0)
         self.window.grid_rowconfigure((0, 1, 2), weight=1)
@@ -117,6 +117,7 @@ class App:
         self.label = tk.CTkLabel(
             self.link_input_frame,
             text="Enter the link of the video you want to download",
+            font=tk.CTkFont(size=19, weight="bold"),
         )
         self.label.grid(
             row=0, column=0, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
@@ -142,7 +143,11 @@ class App:
         self.preview_frame.grid(
             row=2, column=1, padx=(20, 20), pady=(20, 20), sticky="nsew"
         )
-        self.label = tk.CTkLabel(self.preview_frame, text="Information about the video")
+        self.label = tk.CTkLabel(
+            self.preview_frame,
+            text="Information about the video:",
+            font=tk.CTkFont(size=19, weight="bold"),
+        )
         self.label.grid(
             row=0, column=0, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
@@ -212,6 +217,8 @@ class App:
         thumbnail_url = video.thumbnail_url.replace("hq720.jpg", "maxresdefault.jpg")
         title = video.title
         author = video.author
+        length = video.length
+        rating = video.rating
         # thumbnail_url = video.thumbnail_url
         print(thumbnail_url)
         urllib.request.urlretrieve(thumbnail_url, "local-filename.jpg")
@@ -240,11 +247,40 @@ class App:
             row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew"
         )
 
-        self.label = tk.CTkLabel(self.data_frame, text="Title: " + title)
-        self.label.grid(
-            row=1, column=1, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text="Title: " + title,
+            wraplength=450,
+            justify="left",
+            font=tk.CTkFont(size=13, weight="bold"),
         )
-        self.label = tk.CTkLabel(self.data_frame, text="Author: " + author)
         self.label.grid(
-            row=2, column=1, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
+            row=1, column=1, columnspan=2, padx=(5, 5), pady=(2, 0), sticky="w"
+        )
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text="Author: " + author,
+            justify="left",
+            font=tk.CTkFont(size=13, weight="bold"),
+        )
+        self.label.grid(
+            row=2, column=1, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
+        )
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text="Length: " + length.__str__(),
+            justify="left",
+            font=tk.CTkFont(size=13, weight="bold"),
+        )
+        self.label.grid(
+            row=3, column=1, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
+        )
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text="Author: " + author,
+            justify="left",
+            font=tk.CTkFont(size=13, weight="bold"),
+        )
+        self.label.grid(
+            row=4, column=1, columnspan=2, padx=(5, 5), pady=(1, 3), sticky="w"
         )
