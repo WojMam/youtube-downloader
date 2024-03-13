@@ -247,10 +247,10 @@ class App:
             row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew"
         )
 
+        # create data labels - title, author, length, rating
         self.label = tk.CTkLabel(
             self.data_frame,
-            text="Title: " + title,
-            wraplength=450,
+            text="Title: ",
             justify="left",
             font=tk.CTkFont(size=13, weight="bold"),
         )
@@ -259,7 +259,7 @@ class App:
         )
         self.label = tk.CTkLabel(
             self.data_frame,
-            text="Author: " + author,
+            text="Author: ",
             justify="left",
             font=tk.CTkFont(size=13, weight="bold"),
         )
@@ -268,7 +268,7 @@ class App:
         )
         self.label = tk.CTkLabel(
             self.data_frame,
-            text="Length: " + length.__str__(),
+            text="Length: ",
             justify="left",
             font=tk.CTkFont(size=13, weight="bold"),
         )
@@ -277,10 +277,49 @@ class App:
         )
         self.label = tk.CTkLabel(
             self.data_frame,
-            text="Author: " + author,
+            text="Rating: ",
             justify="left",
             font=tk.CTkFont(size=13, weight="bold"),
         )
         self.label.grid(
             row=4, column=1, columnspan=2, padx=(5, 5), pady=(1, 3), sticky="w"
+        )
+
+        # create data labels - data from video object
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text=title,
+            wraplength=300,
+            justify="left",
+            font=tk.CTkFont(size=13),
+        )
+        self.label.grid(
+            row=1, column=3, columnspan=2, padx=(5, 5), pady=(2, 0), sticky="w"
+        )
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text=author,
+            justify="left",
+            font=tk.CTkFont(size=13),
+        )
+        self.label.grid(
+            row=2, column=3, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
+        )
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text=length.__str__(),
+            justify="left",
+            font=tk.CTkFont(size=13),
+        )
+        self.label.grid(
+            row=3, column=3, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
+        )
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text=rating,
+            justify="left",
+            font=tk.CTkFont(size=13),
+        )
+        self.label.grid(
+            row=4, column=3, columnspan=2, padx=(5, 5), pady=(1, 3), sticky="w"
         )
