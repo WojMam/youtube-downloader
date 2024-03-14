@@ -53,6 +53,7 @@ class App:
 
         self.initialize_main_frame()
         self.initialize_sidebar()
+        self.load_dummy_preview(self.preview_frame)
 
         self.window.mainloop()
 
@@ -211,16 +212,115 @@ class App:
     def sidebar_button_event(self):
         print("sidebar_button click")
 
+    def load_dummy_preview(self, ui_element):
+        video_preview = Image.open("./resources/logo_fullsize.png")
+        resized_video_preview = video_preview.resize((400, 250))
+        video_preview_widget = tk.CTkImage(
+            dark_image=resized_video_preview,
+            light_image=resized_video_preview,
+            size=(400, 250),
+        )
+        video_preview_widget.configure()
+        self.video_preview_label = tk.CTkLabel(
+            ui_element,
+            text="",
+            image=video_preview_widget,
+            anchor="w",
+        )
+        self.video_preview_label.grid(
+            row=3, column=1, columnspan=2, padx=(20, 0), pady=(20, 20)
+        )
+
+        # create data frame
+        self.data_frame = tk.CTkFrame(self.preview_frame, width=140, corner_radius=0)
+        self.data_frame.grid(
+            row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew"
+        )
+
+        # create data labels - title, author, length, rating
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text="Title: ",
+            justify="left",
+            font=tk.CTkFont(size=13, weight="bold"),
+        )
+        self.label.grid(
+            row=1, column=1, columnspan=2, padx=(5, 5), pady=(2, 0), sticky="w"
+        )
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text="Author: ",
+            justify="left",
+            font=tk.CTkFont(size=13, weight="bold"),
+        )
+        self.label.grid(
+            row=2, column=1, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
+        )
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text="Length: ",
+            justify="left",
+            font=tk.CTkFont(size=13, weight="bold"),
+        )
+        self.label.grid(
+            row=3, column=1, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
+        )
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text="Rating: ",
+            justify="left",
+            font=tk.CTkFont(size=13, weight="bold"),
+        )
+        self.label.grid(
+            row=4, column=1, columnspan=2, padx=(5, 5), pady=(1, 3), sticky="w"
+        )
+
+        # create data labels - data from video object
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text="Best App in the Galaxy",
+            wraplength=300,
+            justify="left",
+            font=tk.CTkFont(size=13),
+        )
+        self.label.grid(
+            row=1, column=3, columnspan=2, padx=(5, 5), pady=(2, 0), sticky="w"
+        )
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text="Wodjak",
+            justify="left",
+            font=tk.CTkFont(size=13),
+        )
+        self.label.grid(
+            row=2, column=3, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
+        )
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text="not enough",
+            justify="left",
+            font=tk.CTkFont(size=13),
+        )
+        self.label.grid(
+            row=3, column=3, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
+        )
+        self.label = tk.CTkLabel(
+            self.data_frame,
+            text="10/10",
+            justify="left",
+            font=tk.CTkFont(size=13),
+        )
+        self.label.grid(
+            row=4, column=3, columnspan=2, padx=(5, 5), pady=(1, 3), sticky="w"
+        )
+
     def load_video_preview(self, ui_element, link):
-        # link = self.entry.get()  # imageurl
         video = YouTube(link)
         thumbnail_url = video.thumbnail_url.replace("hq720.jpg", "maxresdefault.jpg")
         title = video.title
         author = video.author
         length = video.length
         rating = video.rating
-        # thumbnail_url = video.thumbnail_url
-        print(thumbnail_url)
         urllib.request.urlretrieve(thumbnail_url, "local-filename.jpg")
 
         video_preview = Image.open("local-filename.jpg")
