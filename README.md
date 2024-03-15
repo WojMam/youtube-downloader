@@ -36,12 +36,13 @@ Last commit Pylink status:
 - [x] Create the plans foe the future
 - [x] Create new GUI template using custom tkinter
 - [ ] Create special cases for videos that needs the user to be logged in
-- [ ] Create preview image with the data about the clip
-- [ ] Create dummy image for the "before vide load" state
+- [x] Create preview image with the data about the clip
+- [x] Create dummy image for the "before vide load" state
 - [ ] Disable the download button at start of the App
 - [ ] Create a dropdown with the different resolutions to download video
 - [ ] Add the icon in the main frame of the app window, above all elements
 - [ ] Add icons to the buttons
+- [ ] Add app icon
 
 ## License
 
