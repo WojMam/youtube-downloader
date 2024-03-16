@@ -43,6 +43,7 @@ Last commit Pylink status:
 - [ ] Add the icon in the main frame of the app window, above all elements
 - [ ] Add icons to the buttons
 - [ ] Add app icon
+- [ ] Add URl verification mechanism
 
 ## License
 
