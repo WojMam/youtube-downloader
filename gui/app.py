@@ -45,8 +45,12 @@ class App:
 
         self.window = tk.CTk()
         self.window.title("Youtube Downloader")
-
         self.window.geometry(f"{1200}x{580}")
+
+        ico = Image.open("./resources/logo_nobg.png")
+        photo = ImageTk.PhotoImage(ico)
+        self.window.wm_iconphoto(True, photo)
+
         self.window.grid_columnconfigure(1, weight=1)
         self.window.grid_columnconfigure((2, 3), weight=0)
         self.window.grid_rowconfigure((0, 1, 2), weight=1)
