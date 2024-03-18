@@ -157,28 +157,38 @@ class App:
             row=0, column=0, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
 
-        # create tabview
-        self.tabview = tk.CTkTabview(self.scrollable_frame, width=250)
-        self.tabview.grid(row=3, column=1, padx=(20, 20), pady=(20, 20), sticky="nsew")
-        self.tabview.add("Video").grid_columnconfigure(1, weight=1)
-        self.tabview.add("Audio").grid_columnconfigure(1, weight=1)
+        # create download section frame
+        self.download_frame = tk.CTkFrame(
+            self.scrollable_frame, width=140, corner_radius=0
+        )
+        self.download_frame.grid(
+            row=3, column=1, padx=(20, 20), pady=(20, 20), sticky="nsew"
+        )
+        self.label = tk.CTkLabel(
+            self.download_frame,
+            text="Information about the video:",
+            font=tk.CTkFont(size=19, weight="bold"),
+        )
+        self.label.grid(
+            row=0, column=0, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
+        )
 
         self.button_download_video = tk.CTkButton(
-            self.tabview.tab("Video"),
+            self.download_frame,
             text="Download Video",
             command=self.download_video_button_action,
         )
         self.button_download_video.grid(
-            row=2, column=0, columnspan=1, padx=(20, 0), pady=(20, 20), sticky="nsew"
+            row=2, column=0, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
 
         self.button_download_audio = tk.CTkButton(
-            self.tabview.tab("Audio"),
+            self.download_frame,
             text="Download Audio",
             command=self.download_audio_button_action,
         )
         self.button_download_audio.grid(
-            row=2, column=0, columnspan=1, padx=(20, 0), pady=(20, 20), sticky="nsew"
+            row=2, column=1, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
 
     def download_video_button_action(self):
