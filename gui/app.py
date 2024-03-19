@@ -246,9 +246,9 @@ class App:
         )
 
         # create data frame
-        self.data_frame = tk.CTkFrame(self.preview_frame, width=140, corner_radius=0)
+        self.data_frame = tk.CTkFrame(ui_element, width=310, corner_radius=0)
         self.data_frame.grid(
-            row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew"
+            row=3, column=3, columnspan=2, padx=(20, 20), pady=(20, 20), sticky="nsew"
         )
 
         # create data labels - title, author, length, rating
@@ -356,7 +356,7 @@ class App:
         )
 
         # create data frame
-        self.data_frame = tk.CTkFrame(self.preview_frame, width=140, corner_radius=0)
+        self.data_frame = tk.CTkFrame(ui_element, width=310, corner_radius=0)
         self.data_frame.grid(
             row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew"
         )
