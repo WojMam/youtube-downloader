@@ -1,13 +1,12 @@
 """ This module is responsible for the main window class of the app. """
 
-from tkinter import Canvas
+import urllib.request
 import customtkinter as tk
 
-from gui.utils import Utils
 from pytube import YouTube
 from PIL import Image, ImageTk
-import urllib.request
-from io import BytesIO
+
+from gui.utils import Utils
 
 
 class App:
@@ -52,7 +51,7 @@ class App:
         self.window.wm_iconphoto(True, photo)
 
         self.window.grid_columnconfigure(1, weight=1)
-        self.window.grid_columnconfigure((2, 3), weight=0)
+        self.window.grid_columnconfigure((2, 3, 4), weight=0)
         self.window.grid_rowconfigure((0, 1, 2), weight=1)
 
         self.initialize_main_frame()
@@ -146,7 +145,7 @@ class App:
             self.scrollable_frame, width=140, corner_radius=0
         )
         self.preview_frame.grid(
-            row=2, column=1, padx=(20, 20), pady=(20, 20), sticky="nsew"
+            row=2, column=1, columnspan=4, padx=(20, 20), pady=(20, 20), sticky="nsew"
         )
         self.label = tk.CTkLabel(
             self.preview_frame,
@@ -221,12 +220,21 @@ class App:
         Utils.change_appearance_mode_event(self, new_appearance_mode)
 
     def change_scaling_event(self, new_scaling: str):
+        """
+        This method is responsible for the action of the change scaling event.
+        """
         Utils.change_scaling_event(self, new_scaling)
 
     def sidebar_button_event(self):
+        """
+        This method is responsible for the action of the sidebar button.
+        """
         print("sidebar_button click")
 
     def load_dummy_preview(self, ui_element):
+        """
+        This method is responsible for the loading of the dummy preview of the video.
+        """
         video_preview = Image.open("./resources/logo_fullsize.png")
         resized_video_preview = video_preview.resize((400, 250))
         video_preview_widget = tk.CTkImage(
@@ -246,9 +254,9 @@ class App:
         )
 
         # create data frame
-        self.data_frame = tk.CTkFrame(ui_element, width=310, corner_radius=0)
+        self.data_frame = tk.CTkFrame(ui_element, width=350, corner_radius=10)
         self.data_frame.grid(
-            row=3, column=3, columnspan=2, padx=(20, 20), pady=(20, 20), sticky="nsew"
+            row=3, column=3, columnspan=4, padx=(20, 20), pady=(20, 20), sticky="nsew"
         )
 
         # create data labels - title, author, length, rating
@@ -329,6 +337,9 @@ class App:
         )
 
     def load_video_preview(self, ui_element, link):
+        """
+        This method is responsible for the loading of the preview of the video.
+        """
         video = YouTube(link)
         thumbnail_url = video.thumbnail_url.replace("hq720.jpg", "maxresdefault.jpg")
         title = video.title
