@@ -35,6 +35,12 @@ class App:
         self.scaling_label = None
         self.scaling_optionemenu = None
         self.main_frame = None
+        self.scrollable_frame = None
+        self.link_input_frame = None
+        self.preview_frame = None
+        self.download_frame = None
+        self.video_preview_label = None
+        self.data_frame = None
         self.iniatiliza_window()
 
     def iniatiliza_window(self):
@@ -217,6 +223,9 @@ class App:
         self.load_video_preview(ui_element, link)
 
     def change_appearance_mode_event(self, new_appearance_mode: str):
+        """
+        This method is responsible for the action of the change appearance mode event.
+        """
         Utils.change_appearance_mode_event(self, new_appearance_mode)
 
     def change_scaling_event(self, new_scaling: str):
@@ -432,7 +441,7 @@ class App:
         )
         self.label = tk.CTkLabel(
             self.data_frame,
-            text=length.__str__(),
+            text=str(length),
             justify="left",
             font=tk.CTkFont(size=13),
         )
