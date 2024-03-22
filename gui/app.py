@@ -41,6 +41,7 @@ class App:
         self.download_frame = None
         self.video_preview_label = None
         self.data_frame = None
+        self.button_load_video = None
         self.iniatiliza_window()
 
     def iniatiliza_window(self):
