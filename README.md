@@ -42,7 +42,7 @@ Last commit Pylink status:
 - [ ] Create a dropdown with the different resolutions to download video
 - [ ] Add the icon in the main frame of the app window, above all elements
 - [ ] Add icons to the buttons
-- [ ] Add app icon
+- [x] Add app icon
 - [ ] Add URl verification mechanism
 - [ ] Add the function to open results directory
 
