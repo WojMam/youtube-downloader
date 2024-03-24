@@ -82,7 +82,7 @@ class App:
         )
         self.logo_label.grid(row=0, column=0, padx=20, pady=(20, 10))
         self.sidebar_button_1 = tk.CTkButton(
-            self.sidebar_frame, text="Open results", command=self.sidebar_button_event
+            self.sidebar_frame, text="Open results", command=self.open_results_dir
         )
         self.sidebar_button_1.grid(row=1, column=0, padx=20, pady=10)
         self.sidebar_button_2 = tk.CTkButton(
@@ -196,6 +196,13 @@ class App:
         self.button_download_audio.grid(
             row=2, column=1, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
+
+    def open_results_dir(self):
+        """
+        This method is responsible for the action of the open results directory button.
+        """
+        Utils.create_results_directory(self)
+        Utils.open_results_dir(self)
 
     def download_video_button_action(self):
         """
@@ -356,9 +363,9 @@ class App:
         author = video.author
         length = video.length
         rating = video.rating
-        urllib.request.urlretrieve(thumbnail_url, "local-filename.jpg")
+        urllib.request.urlretrieve(thumbnail_url, "resources/local-filename.jpg")
 
-        video_preview = Image.open("local-filename.jpg")
+        video_preview = Image.open("resources/local-filename.jpg")
         resized_video_preview = video_preview.resize((400, 250))
         video_preview_widget = tk.CTkImage(
             dark_image=resized_video_preview,

@@ -44,7 +44,8 @@ Last commit Pylink status:
 - [ ] Add icons to the buttons
 - [x] Add app icon
 - [ ] Add URl verification mechanism
-- [ ] Add the function to open results directory
+- [x] Add the function to open results directory
+- [ ] Add deletion of miniature when the app is closed
 
 ## License
 
