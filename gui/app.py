@@ -1,8 +1,8 @@
 """ This module is responsible for the main window class of the app. """
 
 import urllib.request
-import customtkinter as tk
 from tkinter import messagebox
+import customtkinter as tk
 
 from pytube import YouTube
 from PIL import Image, ImageTk
@@ -469,5 +469,8 @@ class App:
         )
 
     def on_closing(self):
+        """
+        This method is responsible for the action of the closing event of the app.
+        """
         if messagebox.askokcancel("Quit", "Do you want to quit?"):
             self.window.destroy()
