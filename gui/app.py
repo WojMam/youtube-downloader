@@ -2,6 +2,7 @@
 
 import urllib.request
 import customtkinter as tk
+from tkinter import messagebox
 
 from pytube import YouTube
 from PIL import Image, ImageTk
@@ -65,6 +66,7 @@ class App:
         self.initialize_sidebar()
         self.load_dummy_preview(self.preview_frame)
 
+        self.window.protocol("WM_DELETE_WINDOW", self.on_closing)
         self.window.mainloop()
 
     def initialize_sidebar(self):
@@ -465,3 +467,7 @@ class App:
         self.label.grid(
             row=4, column=3, columnspan=2, padx=(5, 5), pady=(1, 3), sticky="w"
         )
+
+    def on_closing(self):
+        if messagebox.askokcancel("Quit", "Do you want to quit?"):
+            self.window.destroy()
