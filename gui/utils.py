@@ -92,3 +92,13 @@ class Utils:
                 logging.info(
                     "The results directory has been opened (macOS): %s", sub.returncode
                 )
+
+    def delete_preview(self, preview_path: str):
+        """
+        This method deletes the preview file.
+        """
+        if os.path.exists(preview_path):
+            os.remove(preview_path)
+            logging.info("The preview file has been deleted: %s", preview_path)
+        else:
+            logging.error("The preview file does not exist: %s", preview_path)

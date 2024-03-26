@@ -43,6 +43,7 @@ class App:
         self.video_preview_label = None
         self.data_frame = None
         self.button_load_video = None
+        self.thumbnail_filename = None
         self.iniatiliza_window()
 
     def iniatiliza_window(self):
@@ -365,9 +366,10 @@ class App:
         author = video.author
         length = video.length
         rating = video.rating
-        urllib.request.urlretrieve(thumbnail_url, "resources/local-filename.jpg")
+        self.thumbnail_filename = "resources/local-filename.jpg"
+        urllib.request.urlretrieve(thumbnail_url, self.thumbnail_filename)
 
-        video_preview = Image.open("resources/local-filename.jpg")
+        video_preview = Image.open(self.thumbnail_filename)
         resized_video_preview = video_preview.resize((400, 250))
         video_preview_widget = tk.CTkImage(
             dark_image=resized_video_preview,
@@ -470,7 +472,7 @@ class App:
 
     def on_closing(self):
         """
-        This method is responsible for the action of the closing event of the app.
+        This method is responsible for the action of the closing of the app.
         """
-        if messagebox.askokcancel("Quit", "Do you want to quit?"):
-            self.window.destroy()
+        Utils.delete_preview(self, self.thumbnail_filename)
+        self.window.destroy()
