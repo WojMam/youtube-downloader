@@ -89,7 +89,7 @@ class App:
         )
         self.sidebar_button_1.grid(row=1, column=0, padx=20, pady=10)
         self.sidebar_button_2 = tk.CTkButton(
-            self.sidebar_frame, text="About project", command=self.sidebar_button_event
+            self.sidebar_frame, text="About project", command=self.about_button_event
         )
         self.sidebar_button_2.grid(row=2, column=0, padx=20, pady=10)
         self.appearance_mode_label = tk.CTkLabel(
@@ -474,5 +474,14 @@ class App:
         """
         This method is responsible for the action of the closing of the app.
         """
-        Utils.delete_preview(self, self.thumbnail_filename)
-        self.window.destroy()
+        try:
+            Utils.delete_preview(self, self.thumbnail_filename)
+            self.window.destroy()
+        except:
+            self.window.destroy()
+
+    def about_button_event(self):
+        """
+        This method is responsible for the action of the about button.
+        """
+        Utils.open_about(self)

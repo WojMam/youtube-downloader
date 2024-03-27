@@ -4,6 +4,7 @@ import os
 import logging
 import platform
 import subprocess
+import webbrowser
 
 from pytube import YouTube
 import customtkinter as tk
@@ -102,3 +103,29 @@ class Utils:
             logging.info("The preview file has been deleted: %s", preview_path)
         else:
             logging.error("The preview file does not exist: %s", preview_path)
+
+    def delete_results(self):
+        """
+        This method deletes the results directory.
+        """
+        if os.path.exists("Download"):
+            for file in os.listdir("Download"):
+                file_path = os.path.join("Download", file)
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
+                else:
+                    for sub_file in os.listdir(file_path):
+                        sub_file_path = os.path.join(file_path, sub_file)
+                        if os.path.isfile(sub_file_path):
+                            os.remove(sub_file_path)
+            os.rmdir("Download")
+            logging.info("The results directory has been deleted")
+        else:
+            logging.error("The results directory does not exist")
+
+    def open_about(self):
+        """
+        This method opens the project page in the default browser.
+        """
+        url = "https://github.com/WojMam/youtube-downloader"
+        webbrowser.open(url, new=0, autoraise=True)
