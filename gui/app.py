@@ -1,7 +1,6 @@
 """ This module is responsible for the main window class of the app. """
 
 import urllib.request
-from tkinter import messagebox
 import customtkinter as tk
 
 from pytube import YouTube
@@ -477,7 +476,9 @@ class App:
         try:
             Utils.delete_preview(self, self.thumbnail_filename)
             self.window.destroy()
-        except:
+        except TypeError:
+            self.window.destroy()
+        finally:
             self.window.destroy()
 
     def about_button_event(self):
