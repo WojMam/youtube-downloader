@@ -15,6 +15,8 @@ class App:
     and the control of the app.
     """
 
+    # pylint: disable=too-many-instance-attributes
+
     def __init__(self):
         """
         This is the main class of the app. It is responsible for the user interaction
