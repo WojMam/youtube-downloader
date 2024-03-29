@@ -2,7 +2,9 @@
 
 import urllib.request
 import customtkinter as tk
+import pytube
 
+from tkinter import END, messagebox
 from pytube import YouTube
 from PIL import Image, ImageTk
 
@@ -361,115 +363,124 @@ class App:
         """
         This method is responsible for the loading of the preview of the video.
         """
-        video = YouTube(link)
-        thumbnail_url = video.thumbnail_url.replace("hq720.jpg", "maxresdefault.jpg")
-        title = video.title
-        author = video.author
-        length = video.length
-        rating = video.rating
-        self.thumbnail_filename = "resources/local-filename.jpg"
-        urllib.request.urlretrieve(thumbnail_url, self.thumbnail_filename)
+        try:
+            video = YouTube(link)
+            thumbnail_url = video.thumbnail_url.replace(
+                "hq720.jpg", "maxresdefault.jpg"
+            )
+            title = video.title
+            author = video.author
+            length = video.length
+            rating = video.rating
+            self.thumbnail_filename = "resources/local-filename.jpg"
+            urllib.request.urlretrieve(thumbnail_url, self.thumbnail_filename)
 
-        video_preview = Image.open(self.thumbnail_filename)
-        resized_video_preview = video_preview.resize((400, 250))
-        video_preview_widget = tk.CTkImage(
-            dark_image=resized_video_preview,
-            light_image=resized_video_preview,
-            size=(400, 250),
-        )
-        video_preview_widget.configure()
-        self.video_preview_label = tk.CTkLabel(
-            ui_element,
-            text="",
-            image=video_preview_widget,
-            anchor="w",
-        )
-        self.video_preview_label.grid(
-            row=3, column=1, columnspan=2, padx=(20, 0), pady=(20, 20)
-        )
+            video_preview = Image.open(self.thumbnail_filename)
+            resized_video_preview = video_preview.resize((400, 250))
+            video_preview_widget = tk.CTkImage(
+                dark_image=resized_video_preview,
+                light_image=resized_video_preview,
+                size=(400, 250),
+            )
+            video_preview_widget.configure()
+            self.video_preview_label = tk.CTkLabel(
+                ui_element,
+                text="",
+                image=video_preview_widget,
+                anchor="w",
+            )
+            self.video_preview_label.grid(
+                row=3, column=1, columnspan=2, padx=(20, 0), pady=(20, 20)
+            )
 
-        # create data frame
-        self.data_frame = tk.CTkFrame(ui_element, width=310, corner_radius=0)
-        self.data_frame.grid(
-            row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew"
-        )
+            # create data frame
+            self.data_frame = tk.CTkFrame(ui_element, width=310, corner_radius=0)
+            self.data_frame.grid(
+                row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew"
+            )
 
-        # create data labels - title, author, length, rating
-        self.label = tk.CTkLabel(
-            self.data_frame,
-            text="Title: ",
-            justify="left",
-            font=tk.CTkFont(size=13, weight="bold"),
-        )
-        self.label.grid(
-            row=1, column=1, columnspan=2, padx=(5, 5), pady=(2, 0), sticky="w"
-        )
-        self.label = tk.CTkLabel(
-            self.data_frame,
-            text="Author: ",
-            justify="left",
-            font=tk.CTkFont(size=13, weight="bold"),
-        )
-        self.label.grid(
-            row=2, column=1, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
-        )
-        self.label = tk.CTkLabel(
-            self.data_frame,
-            text="Length: ",
-            justify="left",
-            font=tk.CTkFont(size=13, weight="bold"),
-        )
-        self.label.grid(
-            row=3, column=1, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
-        )
-        self.label = tk.CTkLabel(
-            self.data_frame,
-            text="Rating: ",
-            justify="left",
-            font=tk.CTkFont(size=13, weight="bold"),
-        )
-        self.label.grid(
-            row=4, column=1, columnspan=2, padx=(5, 5), pady=(1, 3), sticky="w"
-        )
+            # create data labels - title, author, length, rating
+            self.label = tk.CTkLabel(
+                self.data_frame,
+                text="Title: ",
+                justify="left",
+                font=tk.CTkFont(size=13, weight="bold"),
+            )
+            self.label.grid(
+                row=1, column=1, columnspan=2, padx=(5, 5), pady=(2, 0), sticky="w"
+            )
+            self.label = tk.CTkLabel(
+                self.data_frame,
+                text="Author: ",
+                justify="left",
+                font=tk.CTkFont(size=13, weight="bold"),
+            )
+            self.label.grid(
+                row=2, column=1, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
+            )
+            self.label = tk.CTkLabel(
+                self.data_frame,
+                text="Length: ",
+                justify="left",
+                font=tk.CTkFont(size=13, weight="bold"),
+            )
+            self.label.grid(
+                row=3, column=1, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
+            )
+            self.label = tk.CTkLabel(
+                self.data_frame,
+                text="Rating: ",
+                justify="left",
+                font=tk.CTkFont(size=13, weight="bold"),
+            )
+            self.label.grid(
+                row=4, column=1, columnspan=2, padx=(5, 5), pady=(1, 3), sticky="w"
+            )
 
-        # create data labels - data from video object
-        self.label = tk.CTkLabel(
-            self.data_frame,
-            text=title,
-            wraplength=300,
-            justify="left",
-            font=tk.CTkFont(size=13),
-        )
-        self.label.grid(
-            row=1, column=3, columnspan=2, padx=(5, 5), pady=(2, 0), sticky="w"
-        )
-        self.label = tk.CTkLabel(
-            self.data_frame,
-            text=author,
-            justify="left",
-            font=tk.CTkFont(size=13),
-        )
-        self.label.grid(
-            row=2, column=3, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
-        )
-        self.label = tk.CTkLabel(
-            self.data_frame,
-            text=str(length),
-            justify="left",
-            font=tk.CTkFont(size=13),
-        )
-        self.label.grid(
-            row=3, column=3, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
-        )
-        self.label = tk.CTkLabel(
-            self.data_frame,
-            text=rating,
-            justify="left",
-            font=tk.CTkFont(size=13),
-        )
-        self.label.grid(
-            row=4, column=3, columnspan=2, padx=(5, 5), pady=(1, 3), sticky="w"
-        )
+            # create data labels - data from video object
+            self.label = tk.CTkLabel(
+                self.data_frame,
+                text=title,
+                wraplength=300,
+                justify="left",
+                font=tk.CTkFont(size=13),
+            )
+            self.label.grid(
+                row=1, column=3, columnspan=2, padx=(5, 5), pady=(2, 0), sticky="w"
+            )
+            self.label = tk.CTkLabel(
+                self.data_frame,
+                text=author,
+                justify="left",
+                font=tk.CTkFont(size=13),
+            )
+            self.label.grid(
+                row=2, column=3, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
+            )
+            self.label = tk.CTkLabel(
+                self.data_frame,
+                text=str(length),
+                justify="left",
+                font=tk.CTkFont(size=13),
+            )
+            self.label.grid(
+                row=3, column=3, columnspan=2, padx=(5, 5), pady=(1, 0), sticky="w"
+            )
+            self.label = tk.CTkLabel(
+                self.data_frame,
+                text=rating,
+                justify="left",
+                font=tk.CTkFont(size=13),
+            )
+            self.label.grid(
+                row=4, column=3, columnspan=2, padx=(5, 5), pady=(1, 3), sticky="w"
+            )
+        except pytube.exceptions.VideoUnavailable:
+            self.entry.delete(0, END)
+            messagebox.showinfo("Error", "Invalid YouTube video link.")
+        except pytube.exceptions.RegexMatchError:
+            self.entry.delete(0, END)
+            messagebox.showinfo("Error", "Invalid YouTube video link.")
 
     def on_closing(self):
         """
@@ -479,8 +490,6 @@ class App:
             Utils.delete_preview(self, self.thumbnail_filename)
             self.window.destroy()
         except TypeError:
-            self.window.destroy()
-        finally:
             self.window.destroy()
 
     def about_button_event(self):
