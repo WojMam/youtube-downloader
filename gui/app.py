@@ -10,6 +10,9 @@ from PIL import Image, ImageTk
 
 from gui.utils import Utils
 
+tk.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
+tk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
+
 
 class App:
     """
