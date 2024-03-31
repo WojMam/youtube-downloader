@@ -43,7 +43,7 @@ Last commit Pylink status:
 - [ ] Add the icon in the main frame of the app window, above all elements
 - [ ] Add icons to the buttons
 - [x] Add app icon
-- [ ] Add URl verification mechanism
+- [x] Add URl verification mechanism
 - [x] Add the function to open results directory
 - [x] Add deletion of miniature when the app is closed
 
