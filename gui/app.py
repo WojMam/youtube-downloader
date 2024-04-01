@@ -191,6 +191,7 @@ class App:
         self.button_download_video = tk.CTkButton(
             self.download_frame,
             text="Download Video",
+            state="disabled",
             command=self.download_video_button_action,
         )
         self.button_download_video.grid(
@@ -200,6 +201,7 @@ class App:
         self.button_download_audio = tk.CTkButton(
             self.download_frame,
             text="Download Audio",
+            state="disabled",
             command=self.download_audio_button_action,
         )
         self.button_download_audio.grid(
@@ -478,6 +480,9 @@ class App:
             self.label.grid(
                 row=4, column=3, columnspan=2, padx=(5, 5), pady=(1, 3), sticky="w"
             )
+
+            self.button_download_video.configure(state="normal")
+            self.button_download_audio.configure(state="normal")
         except pytube.exceptions.VideoUnavailable:
             self.entry.delete(0, END)
             messagebox.showinfo("Error", "Invalid YouTube video link.")
