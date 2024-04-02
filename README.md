@@ -38,7 +38,7 @@ Last commit Pylink status:
 - [ ] Create special cases for videos that needs the user to be logged in
 - [x] Create preview image with the data about the clip
 - [x] Create dummy image for the "before vide load" state
-- [ ] Disable the download button at start of the App
+- [x] Disable the download button at start of the App
 - [ ] Create a dropdown with the different resolutions to download video
 - [ ] Add the icon in the main frame of the app window, above all elements
 - [ ] Add icons to the buttons
