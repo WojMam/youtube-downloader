@@ -50,6 +50,7 @@ class App:
         self.data_frame = None
         self.button_load_video = None
         self.thumbnail_filename = None
+        self.resolution_combobox = None
         self.iniatiliza_window()
 
     def iniatiliza_window(self):
@@ -206,6 +207,15 @@ class App:
         )
         self.button_download_audio.grid(
             row=2, column=1, padx=(20, 0), pady=(20, 20), sticky="nsew"
+        )
+
+        self.resolution_combobox = tk.CTkComboBox(
+            self.download_frame,
+            state="disabled",
+            values=["1080p"],
+        )
+        self.resolution_combobox.grid(
+            row=1, column=0, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
 
     def open_results_dir(self):
@@ -481,8 +491,16 @@ class App:
                 row=4, column=3, columnspan=2, padx=(5, 5), pady=(1, 3), sticky="w"
             )
 
+            resolutions = video.streams.filter(adaptive=True).order_by("resolution")
+            resolutions_list = []
+            for resolution in resolutions:
+                resolutions_list.append(resolution.resolution)
+            resolutions_list = list(dict.fromkeys(resolutions_list))
+            self.resolution_combobox.configure(values=resolutions_list)
+
             self.button_download_video.configure(state="normal")
             self.button_download_audio.configure(state="normal")
+            self.resolution_combobox.configure(state="readonly")
         except pytube.exceptions.VideoUnavailable:
             self.entry.delete(0, END)
             messagebox.showinfo("Error", "Invalid YouTube video link.")
