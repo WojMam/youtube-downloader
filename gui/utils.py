@@ -24,7 +24,7 @@ class Utils:
         if not os.path.exists("Download"):
             os.mkdir("Download")
 
-    def download_video(self, link: str):
+    def download_video(self, link: str, resolution: str):
         """
         This method is checking if the directory for the produced results is available
         in the project and if not- it is creating it in the root of the project.
@@ -35,10 +35,14 @@ class Utils:
         print("Currently downloading video of: ", youtube_object.title)
         print("From: ", youtube_object.author)
         print("With length of: ", youtube_object.length)
+        print("With resolution of: ", resolution)
 
-        video_from_object = youtube_object.streams.get_highest_resolution()
+        video_from_object = youtube_object.streams.get_by_resolution(resolution)
 
-        video_from_object.download("./Download/Video")
+        try:
+            video_from_object.download("./Download/Video")
+        except AttributeError as e:
+            print("The video could not be downloaded due to: ", e)
 
     def download_audio(self, link: str):
         """

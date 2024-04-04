@@ -232,7 +232,7 @@ class App:
 
         link = self.entry.get()
 
-        Utils.download_video(self, link)
+        Utils.download_video(self, link, resolution=self.resolution_combobox.get())
 
     def download_audio_button_action(self):
         """
@@ -491,7 +491,7 @@ class App:
                 row=4, column=3, columnspan=2, padx=(5, 5), pady=(1, 3), sticky="w"
             )
 
-            resolutions = video.streams.filter(adaptive=True).order_by("resolution")
+            resolutions = video.streams.filter(progressive=True).order_by("resolution")
             resolutions_list = []
             for resolution in resolutions:
                 resolutions_list.append(resolution.resolution)
