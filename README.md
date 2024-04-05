@@ -47,6 +47,8 @@ Last commit Pylink status:
 - [x] Add the function to open results directory
 - [x] Add deletion of miniature when the app is closed
 - [ ] Add possibility to download higher resolutions (not only progressive streams)
+- [ ] Add a progress bar for downloading
+- [ ] Add a progress animation (?) for loading a preview
 
 ## License
 
