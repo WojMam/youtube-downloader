@@ -49,6 +49,7 @@ Last commit Pylink status:
 - [ ] Add possibility to download higher resolutions (not only progressive streams)
 - [ ] Add a progress bar for downloading
 - [ ] Add a progress animation (?) for loading a preview
+- [ ] Fix issue with wrong default value for scaling
 
 ## License
 
