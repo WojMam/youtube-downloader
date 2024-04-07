@@ -99,6 +99,9 @@ class App:
             self.sidebar_frame, text="About project", command=self.about_button_event
         )
         self.sidebar_button_2.grid(row=2, column=0, padx=20, pady=10)
+
+        appearance_mode_var = tk.StringVar(value="Dark")  # set initial value
+        scaling_var = tk.StringVar(value="100%")  # set initial value
         self.appearance_mode_label = tk.CTkLabel(
             self.sidebar_frame, text="Appearance Mode:", anchor="w"
         )
@@ -107,6 +110,7 @@ class App:
             self.sidebar_frame,
             values=["Light", "Dark", "System"],
             command=self.change_appearance_mode_event,
+            variable=appearance_mode_var,
         )
         self.appearance_mode_optionemenu.grid(row=6, column=0, padx=20, pady=(10, 10))
         self.scaling_label = tk.CTkLabel(
@@ -117,6 +121,7 @@ class App:
             self.sidebar_frame,
             values=["80%", "90%", "100%", "110%", "120%"],
             command=self.change_scaling_event,
+            variable=scaling_var,
         )
         self.scaling_optionemenu.grid(row=8, column=0, padx=20, pady=(10, 20))
 
