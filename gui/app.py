@@ -187,7 +187,7 @@ class App:
         )
         self.label = tk.CTkLabel(
             self.download_frame,
-            text="Information about the video:",
+            text="Choose the download quality:",
             font=tk.CTkFont(size=19, weight="bold"),
         )
         self.label.grid(
