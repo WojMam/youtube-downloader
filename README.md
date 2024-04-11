@@ -51,6 +51,7 @@ Last commit Pylink status:
 - [ ] Add a progress animation (?) for loading a preview
 - [x] Fix issue with wrong default value for scaling
 - [ ] Add a possibility to download preview image
+- [ ] Add a dropdown list to choose the resolution of preview image download
 
 ## License
 
