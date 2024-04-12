@@ -51,6 +51,7 @@ class App:
         self.button_load_video = None
         self.thumbnail_filename = None
         self.resolution_combobox = None
+        self.button_download_preview_image = None
         self.iniatiliza_window()
 
     def iniatiliza_window(self):
@@ -214,6 +215,16 @@ class App:
             row=2, column=1, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
 
+        self.button_download_preview_image = tk.CTkButton(
+            self.download_frame,
+            text="Download Preview",
+            state="disabled",
+            command=self.download_preview_image_button_action,
+        )
+        self.button_download_preview_image.grid(
+            row=2, column=3, padx=(20, 0), pady=(20, 20), sticky="nsew"
+        )
+
         self.resolution_combobox = tk.CTkComboBox(
             self.download_frame,
             state="disabled",
@@ -247,6 +258,15 @@ class App:
         link = self.entry.get()
 
         Utils.download_audio(self, link)
+
+    def download_preview_image_button_action(self):
+        """
+        This method is responsible for the action of the download audio button.
+        """
+
+        link = self.entry.get()
+
+        Utils.download_preview(self, link)
 
     def load_video_button_action(self):
         """
@@ -505,6 +525,7 @@ class App:
 
             self.button_download_video.configure(state="normal")
             self.button_download_audio.configure(state="normal")
+            self.button_download_preview_image.configure(state="normal")
             self.resolution_combobox.configure(state="readonly")
         except pytube.exceptions.VideoUnavailable:
             self.entry.delete(0, END)

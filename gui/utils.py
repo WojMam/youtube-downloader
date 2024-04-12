@@ -5,6 +5,7 @@ import logging
 import platform
 import subprocess
 import webbrowser
+import urllib.request
 
 from pytube import YouTube
 import customtkinter as tk
@@ -59,6 +60,22 @@ class Utils:
         audio_from_object = youtube_object.streams.get_audio_only()
 
         audio_from_object.download("./Download/Music")
+
+    def download_preview(self, link: str):
+        """
+        This method is checking if the directory for the produced results is available
+        in the project and if not- it is creating it in the root of the project.
+        """
+
+        youtube_object = YouTube(link)
+
+        print("Currently downloading preview of: ", youtube_object.title)
+        print("From: ", youtube_object.author)
+
+        video = YouTube(link)
+        thumbnail_url = video.thumbnail_url.replace("hq720.jpg", "maxresdefault.jpg")
+        thumbnail_filename = "./Download/Preview.png"
+        urllib.request.urlretrieve(thumbnail_url, thumbnail_filename)
 
     def change_appearance_mode_event(self, new_appearance_mode: str):
         """
