@@ -52,6 +52,7 @@ Last commit Pylink status:
 - [x] Fix issue with wrong default value for scaling
 - [ ] Add a possibility to download preview image
 - [ ] Add a dropdown list to choose the resolution of preview image download
+- [ ] Add a link to the youtube video that was loaded
 
 ## License
 
