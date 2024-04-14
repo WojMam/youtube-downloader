@@ -45,6 +45,7 @@ class App:
         self.scrollable_frame = None
         self.link_input_frame = None
         self.preview_frame = None
+        self.open_link_button = None
         self.download_frame = None
         self.video_preview_label = None
         self.data_frame = None
@@ -178,6 +179,14 @@ class App:
         self.label.grid(
             row=0, column=0, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
+
+        self.open_link_button = tk.CTkButton(
+            self.preview_frame,
+            text="Open Video",
+            state="disabled",
+            command=self.open_link_button_event,
+        )
+        self.open_link_button.grid(row=4, column=1, padx=20, pady=1, sticky="nw")
 
         # create download section frame
         self.download_frame = tk.CTkFrame(
@@ -526,6 +535,7 @@ class App:
             self.button_download_video.configure(state="normal")
             self.button_download_audio.configure(state="normal")
             self.button_download_preview_image.configure(state="normal")
+            self.open_link_button.configure(state="normal")
             self.resolution_combobox.configure(state="readonly")
         except pytube.exceptions.VideoUnavailable:
             self.entry.delete(0, END)
@@ -549,3 +559,9 @@ class App:
         This method is responsible for the action of the about button.
         """
         Utils.open_about(self)
+
+    def open_link_button_event(self):
+        """
+        This method is responsible for the action of the open link button.
+        """
+        Utils.open_link(self, self.entry.get())

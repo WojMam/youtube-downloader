@@ -150,3 +150,9 @@ class Utils:
         """
         url = "https://github.com/WojMam/youtube-downloader"
         webbrowser.open(url, new=0, autoraise=True)
+
+    def open_link(self, url: str):
+        """
+        This method opens the link in the default browser.
+        """
+        webbrowser.open(url, new=0, autoraise=True)
