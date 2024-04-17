@@ -1,10 +1,10 @@
 """ This module is responsible for the main window class of the app. """
 
+from tkinter import END, messagebox
 import urllib.request
 import customtkinter as tk
 import pytube
 
-from tkinter import END, messagebox
 from pytube import YouTube
 from PIL import Image, ImageTk
 
@@ -20,7 +20,7 @@ class App:
     and the control of the app.
     """
 
-    # pylint: disable=too-many-instance-attributes
+    # pylint: disable=too-many-instance-attributes, too-many-statements
 
     def __init__(self):
         """
