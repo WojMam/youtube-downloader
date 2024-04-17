@@ -97,15 +97,15 @@ class Utils:
         This method opens results directory in system explorer.
         """
 
-        path = "../results"
+        path = "Download"
         if platform.system() == "Windows":
-            path = os.path.join(os.path.dirname(__file__), "../Download")
+            path = os.path.join(os.path.dirname(__file__), "../+" + path)
             # Line below has to be disabled in pylint due to the lack of this method in Unix os
             # which the pylint is ran on.
             os.startfile(path)  # pylint: disable=no-member
             logging.info("The results directory has been opened (windows)")
         elif platform.system() == "Darwin":
-            with subprocess.Popen(["open", path]) as sub:
+            with subprocess.Popen(["open", "./" + path]) as sub:
                 logging.info(
                     "The results directory has been opened (linux): %s", sub.returncode
                 )
