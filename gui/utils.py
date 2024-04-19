@@ -1,6 +1,7 @@
 """ This module contains the utility methods for the app. """
 
 import os
+import re
 import logging
 import platform
 import subprocess
@@ -83,8 +84,10 @@ class Utils:
 
         video = YouTube(link)
         print("Before: ", video.thumbnail_url)
+        resolution_from_thumbnail = Utils.find_thumbnail_resolution(video.thumbnail_url, thumbnail_link=video.thumbnail_url)  # Pass the thumbnail_url as an argument
+        print("Resolution from thumbnail: ", resolution_from_thumbnail)
         thumbnail_url = video.thumbnail_url.replace(
-            "hq720.jpg", preview_qualities[resolution] + ".jpg"
+            resolution_from_thumbnail, preview_qualities[resolution] + ".jpg"
         )
 
         print("URL: ", thumbnail_url)
@@ -173,3 +176,13 @@ class Utils:
         This method opens the link in the default browser.
         """
         webbrowser.open(url, new=0, autoraise=True)
+
+    def find_thumbnail_resolution(self, thumbnail_link: str):
+        """
+        This method finds the text between the last slash and the .jpg in the string.
+        """
+        match = re.search(r"\/([^\/]+)(?=\.jpg)", thumbnail_link)
+        if match:
+            return match.group(1) + ".jpg"
+        else:
+            return None
