@@ -52,6 +52,7 @@ class App:
         self.button_load_video = None
         self.thumbnail_filename = None
         self.resolution_combobox = None
+        self.resolution_combobox_thumbnail = None
         self.button_download_preview_image = None
         self.iniatiliza_window()
 
