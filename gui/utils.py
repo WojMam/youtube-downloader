@@ -61,7 +61,7 @@ class Utils:
 
         audio_from_object.download("./Download/Music")
 
-    def download_preview(self, link: str):
+    def download_preview(self, link: str, resolution: str):
         """
         This method is checking if the directory for the produced results is available
         in the project and if not- it is creating it in the root of the project.
@@ -69,12 +69,29 @@ class Utils:
 
         youtube_object = YouTube(link)
 
+        preview_qualities = {
+            "Max": "maxresdefault",
+            "High": "hqdefault",
+            "SD": "sddefault",
+            "Mid": "mqdefault",
+            "Default": "default",
+        }
+
         print("Currently downloading preview of: ", youtube_object.title)
         print("From: ", youtube_object.author)
+        print("With resolution: ", preview_qualities[resolution])
 
         video = YouTube(link)
-        thumbnail_url = video.thumbnail_url.replace("hq720.jpg", "maxresdefault.jpg")
-        thumbnail_filename = "./Download/Preview.png"
+        print("Before: ", video.thumbnail_url)
+        thumbnail_url = video.thumbnail_url.replace(
+            "hq720.jpg", preview_qualities[resolution] + ".jpg"
+        )
+
+        print("URL: ", thumbnail_url)
+
+        thumbnail_filename = (
+            "./Download/Preview_" + preview_qualities[resolution] + ".png"
+        )
         urllib.request.urlretrieve(thumbnail_url, thumbnail_filename)
 
     def change_appearance_mode_event(self, new_appearance_mode: str):

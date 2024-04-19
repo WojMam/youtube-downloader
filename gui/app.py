@@ -201,7 +201,23 @@ class App:
             font=tk.CTkFont(size=19, weight="bold"),
         )
         self.label.grid(
-            row=0, column=0, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
+            row=0, column=0, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nw"
+        )
+
+        self.label = tk.CTkLabel(
+            self.download_frame,
+            text="[Video and audio]",
+            font=tk.CTkFont(size=17, weight="bold"),
+        )
+        self.label.grid(
+            row=1, column=0, columnspan=2, padx=(20, 0), pady=(20, 2), sticky="nw"
+        )
+
+        self.resolution_combobox = tk.CTkComboBox(
+            self.download_frame, state="disabled", values=["1080p"]
+        )
+        self.resolution_combobox.grid(
+            row=2, column=0, columnspan=2, padx=(20, 0), pady=(5, 20), sticky="nsew"
         )
 
         self.button_download_video = tk.CTkButton(
@@ -211,7 +227,7 @@ class App:
             command=self.download_video_button_action,
         )
         self.button_download_video.grid(
-            row=2, column=0, padx=(20, 0), pady=(20, 20), sticky="nsew"
+            row=3, column=0, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
 
         self.button_download_audio = tk.CTkButton(
@@ -221,7 +237,25 @@ class App:
             command=self.download_audio_button_action,
         )
         self.button_download_audio.grid(
-            row=2, column=1, padx=(20, 0), pady=(20, 20), sticky="nsew"
+            row=3, column=1, padx=(20, 0), pady=(20, 20), sticky="nsew"
+        )
+
+        self.label = tk.CTkLabel(
+            self.download_frame,
+            text="[Thumbnail]",
+            font=tk.CTkFont(size=17, weight="bold"),
+        )
+        self.label.grid(
+            row=4, column=0, columnspan=2, padx=(20, 0), pady=(20, 2), sticky="nw"
+        )
+
+        self.resolution_combobox_thumbnail = tk.CTkComboBox(
+            self.download_frame,
+            state="disabled",
+            values=["SD", "Mid", "High", "Default"],
+        )
+        self.resolution_combobox_thumbnail.grid(
+            row=5, column=0, columnspan=2, padx=(20, 0), pady=(5, 20), sticky="nsew"
         )
 
         self.button_download_preview_image = tk.CTkButton(
@@ -231,16 +265,7 @@ class App:
             command=self.download_preview_image_button_action,
         )
         self.button_download_preview_image.grid(
-            row=2, column=3, padx=(20, 0), pady=(20, 20), sticky="nsew"
-        )
-
-        self.resolution_combobox = tk.CTkComboBox(
-            self.download_frame,
-            state="disabled",
-            values=["1080p"],
-        )
-        self.resolution_combobox.grid(
-            row=1, column=0, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew"
+            row=6, column=0, padx=(20, 0), pady=(20, 20), sticky="nsew"
         )
 
     def open_results_dir(self):
@@ -274,8 +299,9 @@ class App:
         """
 
         link = self.entry.get()
+        resolution = self.resolution_combobox_thumbnail.get()
 
-        Utils.download_preview(self, link)
+        Utils.download_preview(self, link, resolution)
 
     def load_video_button_action(self):
         """
@@ -537,6 +563,9 @@ class App:
             self.button_download_preview_image.configure(state="normal")
             self.open_link_button.configure(state="normal")
             self.resolution_combobox.configure(state="readonly")
+            self.resolution_combobox.set(resolutions_list[0])
+            self.resolution_combobox_thumbnail.configure(state="readonly")
+            self.resolution_combobox_thumbnail.set("Default")
         except pytube.exceptions.VideoUnavailable:
             self.entry.delete(0, END)
             messagebox.showinfo("Error", "Invalid YouTube video link.")
