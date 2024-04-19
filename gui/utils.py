@@ -84,7 +84,9 @@ class Utils:
 
         video = YouTube(link)
         print("Before: ", video.thumbnail_url)
-        resolution_from_thumbnail = Utils.find_thumbnail_resolution(video.thumbnail_url, thumbnail_link=video.thumbnail_url)  # Pass the thumbnail_url as an argument
+        resolution_from_thumbnail = Utils.find_thumbnail_resolution(
+            video.thumbnail_url, thumbnail_link=video.thumbnail_url
+        )
         print("Resolution from thumbnail: ", resolution_from_thumbnail)
         thumbnail_url = video.thumbnail_url.replace(
             resolution_from_thumbnail, preview_qualities[resolution] + ".jpg"
@@ -184,5 +186,4 @@ class Utils:
         match = re.search(r"\/([^\/]+)(?=\.jpg)", thumbnail_link)
         if match:
             return match.group(1) + ".jpg"
-        else:
-            return None
+        return None
