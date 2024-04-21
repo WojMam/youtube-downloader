@@ -181,7 +181,7 @@ class Utils:
 
     def find_thumbnail_resolution(self, thumbnail_link: str):
         """
-        This method finds the text between the last slash and the .jpg in the string.
+        This method finds the frgament in the thumbnail link that states its resolution.
         """
         match = re.search(r"\/([^\/]+)(?=\.jpg)", thumbnail_link)
         if match:
