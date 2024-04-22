@@ -53,6 +53,7 @@ Last commit Pylink status:
 - [x] Add a possibility to download preview image
 - [x] Add a dropdown list to choose the resolution of preview image download
 - [x] Add a link to the youtube video that was loaded
+- [ ] Redo the class structure
 
 ## License
 
