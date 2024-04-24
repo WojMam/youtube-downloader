@@ -1,6 +1,6 @@
 # qr_generator
 
-YouTube Downloader is a small side project that enables quick download of youtube videos.
+YouTube Downloader is a small side project that enables quick download of youtube videos, audio and thumbnails.
 
 ## Pre-requisities
 
