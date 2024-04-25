@@ -139,8 +139,9 @@ class Utils:
 
     def delete_preview(self, preview_path: str):
         """
-        This method deletes the preview file.
+        This method deletes the thumbnail used as preview file.
         """
+
         if os.path.exists(preview_path):
             os.remove(preview_path)
             logging.info("The preview file has been deleted: %s", preview_path)
@@ -151,6 +152,7 @@ class Utils:
         """
         This method deletes the results directory.
         """
+
         if os.path.exists("Download"):
             for file in os.listdir("Download"):
                 file_path = os.path.join("Download", file)
@@ -168,8 +170,9 @@ class Utils:
 
     def open_about(self):
         """
-        This method opens the project page in the default browser.
+        This method opens the project page in the default system browser.
         """
+
         url = "https://github.com/WojMam/youtube-downloader"
         webbrowser.open(url, new=0, autoraise=True)
 
@@ -177,12 +180,14 @@ class Utils:
         """
         This method opens the link in the default browser.
         """
+
         webbrowser.open(url, new=0, autoraise=True)
 
     def find_thumbnail_resolution(self, thumbnail_link: str):
         """
         This method finds the frgament in the thumbnail link that states its resolution.
         """
+        
         match = re.search(r"\/([^\/]+)(?=\.jpg)", thumbnail_link)
         if match:
             return match.group(1) + ".jpg"

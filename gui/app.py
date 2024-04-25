@@ -27,6 +27,7 @@ class App:
         This is the main class of the app. It is responsible for the user interaction
         and the control of the app.
         """
+
         self.label = None
         self.entry = None
         self.button = None
@@ -132,6 +133,7 @@ class App:
         """
         This method is responsible for the initialization of the widgets of the app.
         """
+
         # create scrollable frame
         self.scrollable_frame = tk.CTkScrollableFrame(self.window)
         self.scrollable_frame.grid(row=0, column=1, rowspan=4, sticky="nsew")
@@ -273,6 +275,7 @@ class App:
         """
         This method is responsible for the action of the open results directory button.
         """
+
         Utils.create_results_directory(self)
         Utils.open_results_dir(self)
 
@@ -308,6 +311,7 @@ class App:
         """
         This method is responsible for the action of the download audio button.
         """
+
         ui_element = self.preview_frame
         link = self.entry.get()
         self.load_video_preview(ui_element, link)
@@ -316,24 +320,21 @@ class App:
         """
         This method is responsible for the action of the change appearance mode event.
         """
+
         Utils.change_appearance_mode_event(self, new_appearance_mode)
 
     def change_scaling_event(self, new_scaling: str):
         """
         This method is responsible for the action of the change scaling event.
         """
-        Utils.change_scaling_event(self, new_scaling)
 
-    def sidebar_button_event(self):
-        """
-        This method is responsible for the action of the sidebar button.
-        """
-        print("sidebar_button click")
+        Utils.change_scaling_event(self, new_scaling)
 
     def load_dummy_preview(self, ui_element):
         """
         This method is responsible for the loading of the dummy preview of the video.
         """
+
         video_preview = Image.open("./resources/logo_fullsize.png")
         resized_video_preview = video_preview.resize((400, 250))
         video_preview_widget = tk.CTkImage(
@@ -439,6 +440,7 @@ class App:
         """
         This method is responsible for the loading of the preview of the video.
         """
+
         try:
             video = YouTube(link)
             thumbnail_url = video.thumbnail_url.replace(
@@ -578,6 +580,7 @@ class App:
         """
         This method is responsible for the action of the closing of the app.
         """
+
         try:
             Utils.delete_preview(self, self.thumbnail_filename)
             self.window.destroy()
@@ -588,10 +591,12 @@ class App:
         """
         This method is responsible for the action of the about button.
         """
+
         Utils.open_about(self)
 
     def open_link_button_event(self):
         """
         This method is responsible for the action of the open link button.
         """
+
         Utils.open_link(self, self.entry.get())
