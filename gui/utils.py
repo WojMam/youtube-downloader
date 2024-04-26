@@ -187,7 +187,7 @@ class Utils:
         """
         This method finds the frgament in the thumbnail link that states its resolution.
         """
-        
+
         match = re.search(r"\/([^\/]+)(?=\.jpg)", thumbnail_link)
         if match:
             return match.group(1) + ".jpg"
