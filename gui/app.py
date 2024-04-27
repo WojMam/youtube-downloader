@@ -263,7 +263,7 @@ class App:
 
         self.button_download_preview_image = tk.CTkButton(
             self.download_frame,
-            text="Download Preview",
+            text="Download Thumbnail",
             state="disabled",
             command=self.download_preview_image_button_action,
         )
