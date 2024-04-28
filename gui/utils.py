@@ -121,7 +121,7 @@ class Utils:
 
         path = "Download"
         if platform.system() == "Windows":
-            path = os.path.join(os.path.dirname(__file__), "../+" + path)
+            path = os.path.join(os.path.dirname(__file__), "../" + path)
             # Line below has to be disabled in pylint due to the lack of this method in Unix os
             # which the pylint is ran on.
             os.startfile(path)  # pylint: disable=no-member
@@ -187,7 +187,7 @@ class Utils:
         """
         This method finds the frgament in the thumbnail link that states its resolution.
         """
-        
+
         match = re.search(r"\/([^\/]+)(?=\.jpg)", thumbnail_link)
         if match:
             return match.group(1) + ".jpg"
