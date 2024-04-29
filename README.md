@@ -31,6 +31,7 @@ Last commit Pylink status:
 [![Pylint](https://github.com/WojMam/youtube-downloader/actions/workflows/pylint.yml/badge.svg)](https://github.com/WojMam/youtube-downloader/actions/workflows/pylint.yml)
 
 ## Plans for the future:
+ToDo list of features/ideas for the project to use in the future:
 
 - [x] Create PoC
 - [x] Create the plans foe the future
