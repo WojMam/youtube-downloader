@@ -19,6 +19,8 @@ User can use application GUI to input youtube links. To run the GUI below comman
 python main.py
 ```
 
+After getting the youtube video link into the input field the buttons below should become active. Afterwards buttons can be used to download vide, audio or thumbnail.
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
@@ -31,6 +33,7 @@ Last commit Pylink status:
 [![Pylint](https://github.com/WojMam/youtube-downloader/actions/workflows/pylint.yml/badge.svg)](https://github.com/WojMam/youtube-downloader/actions/workflows/pylint.yml)
 
 ## Plans for the future:
+
 ToDo list of features/ideas for the project to use in the future:
 
 - [x] Create PoC
