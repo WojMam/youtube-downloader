@@ -59,7 +59,7 @@ ToDo list of features/ideas for the project to use in the future:
 - [x] Add a link to the youtube video that was loaded
 - [ ] Rework of class structure
 - [ ] Add app screenshot to the instruction
-- [ ] Add packaging 
+- [ ] Add packaging/ executable creation
 - [ ] Finalize the project
 
 ## License
