@@ -19,7 +19,7 @@ User can use application GUI to input youtube links. To run the GUI below comman
 python main.py
 ```
 
-![Main App view](/resources/app_view.png?raw=true "Main window view")
+![Main App view](/resources/app_view.PNG?raw=true "Main window view")
 
 After getting the youtube video link into the input field the buttons below should become active. Afterwards buttons can be used to download vide, audio or thumbnail.
 
