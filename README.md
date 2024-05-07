@@ -60,7 +60,7 @@ ToDo list of features/ideas for the project to use in the future:
 - [x] Add a dropdown list to choose the resolution of preview image download
 - [x] Add a link to the youtube video that was loaded
 - [ ] Rework of class structure
-- [ ] Add app screenshot to the instruction
+- [x] Add app screenshot to the instruction
 - [ ] Add packaging/ executable creation
 - [ ] Finalize the project
 
