@@ -52,7 +52,7 @@ ToDo list of features/ideas for the project to use in the future:
 - [x] Add URl verification mechanism
 - [x] Add the function to open results directory
 - [x] Add deletion of miniature when the app is closed
-- [ ] Add possibility to download higher resolutions (not only progressive streams)
+- [x] Add possibility to download higher resolutions
 - [ ] Add a progress bar for downloading
 - [ ] Add a progress animation (?) for loading a preview
 - [x] Fix issue with wrong default value for scaling
