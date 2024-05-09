@@ -47,7 +47,7 @@ ToDo list of features/ideas for the project to use in the future:
 - [x] Disable the download button at start of the App
 - [x] Create a dropdown with the different resolutions to download video
 - [x] Add the icon in the main frame of the app window, above all elements
-- [ ] Add icons to the buttons
+- [x] Add icons to the buttons - removed :heavy_multiplication_x:
 - [x] Add app icon
 - [x] Add URl verification mechanism
 - [x] Add the function to open results directory
