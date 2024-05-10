@@ -41,7 +41,7 @@ ToDo list of features/ideas for the project to use in the future:
 - [x] Create PoC
 - [x] Create the plans foe the future
 - [x] Create new GUI template using custom tkinter
-- [ ] Create special cases for videos that needs the user to be logged in
+- [x] Create special cases for videos that needs the user to be logged in - removed :heavy_multiplication_x:
 - [x] Create preview image with the data about the clip
 - [x] Create dummy image for the "before vide load" state
 - [x] Disable the download button at start of the App
