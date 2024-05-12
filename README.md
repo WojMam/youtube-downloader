@@ -62,6 +62,7 @@ ToDo list of features/ideas for the project to use in the future:
 - [ ] Rework of class structure
 - [x] Add app screenshot to the instruction
 - [ ] Add packaging/ executable creation
+- [ ] Create versioning
 - [ ] Finalize the project
 
 ## License
